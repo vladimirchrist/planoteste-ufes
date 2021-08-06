@@ -15,14 +15,14 @@ public class Funcionario {
     public Funcionario(String nome, double salarioBase, String cargo) throws Exception {
         String exceptions = "";
 
-        if (nome == null) {
+        if (nome == null || nome == "") {
             exceptions = exceptions.concat("\n#1 Informe um nome válido");
         }
 
-        if (cargo == null) {
+        if (cargo == null || cargo == "") {
             exceptions = exceptions.concat("\n#2 Informe um cargo válido");
         }
-        if (salarioBase <= 998.0) {
+        if (salarioBase < 998.0) {
             exceptions = exceptions.concat("\n#3 O salário base deve ser >= R$ 998,00");
         }
 
@@ -55,7 +55,9 @@ public class Funcionario {
         return faltas;
     }
 
-    public void setFaltas(int faltas) {
+    public void setFaltas(int faltas) throws Exception {
+        
+        if(faltas < 0) throw new Exception("Faltas não pode ser menor que zero!");
         this.faltas = faltas;
     }
 
@@ -63,7 +65,10 @@ public class Funcionario {
         return distanciaMoradia;
     }
 
-    public void setDistanciaMoradia(int distanciaMoradia) {
+    public void setDistanciaMoradia(int distanciaMoradia) throws Exception {
+        
+        if(distanciaMoradia < 0) throw new Exception("Distância não pode ser menor que zero!");
+
         this.distanciaMoradia = distanciaMoradia;
     }
 
