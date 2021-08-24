@@ -46,8 +46,8 @@ public class Funcionario {
     if (cargo == null || cargo == "") {
       exceptions = exceptions.concat("\n#2 Informe um cargo válido");
     }
-    if (salarioBase < 998.0) {
-      exceptions = exceptions.concat("\n#3 O salário base deve ser >= R$ 998,00");
+    if (salarioBase != 998.0) {
+      exceptions = exceptions.concat("\n#3 O salário base deve ser igual a R$ 998,00");
     }
     if (distanciaMoradia < 0) {
       exceptions = exceptions.concat("\n#4 A distância deve ser >= 0");
@@ -106,8 +106,8 @@ public class Funcionario {
   }
 
   public void setSalarioBase(double salarioBase) throws Exception {
-    if (salarioBase < 998.0) {
-      throw new Exception("\n#3 O salário base deve ser >= R$ 998,00");
+    if (salarioBase != 998.0) {
+      throw new Exception("\n#3 O salário base deve ser igual a R$ 998,00");
     }
 
     this.salarioBase = salarioBase;

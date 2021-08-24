@@ -346,6 +346,7 @@ public class FuncionarioBonusTest {
 
     // Act
     pb.processar(funcionario);
+    pb.processar(funcionario);
 
     // Assert
     assertEquals(salarioEsperado, funcionario.getSalario(), 0.001);
@@ -353,21 +354,6 @@ public class FuncionarioBonusTest {
 
   @Test
   public void CT026() throws Exception {
-    // Arrange
-    Funcionario funcionario = new Funcionario("Fulano", 998.00, "Gerente", 30, 5);
-    double salarioEsperado = 1107.98;
-    ProcessadoraBonus pb = new ProcessadoraBonus();
-
-    // Act
-    pb.processar(funcionario);
-    pb.processar(funcionario);
-
-    // Assert
-    assertEquals(salarioEsperado, funcionario.getSalario(), 0.001);
-  }
-
-  @Test
-  public void CT027() throws Exception {
     // Arrange
     Funcionario funcionario = new Funcionario("Fulano", 998.00, "Gerente Senior", 30, 5);
     double salarioEsperado = 1107.98;
