@@ -5,21 +5,21 @@ import java.util.ArrayList;
 
 public class ProcessadoraBonus {
 
-    private final ArrayList<IMetodoCalculaBonus> metodosDeCalculoBonus;
+  private final ArrayList<IMetodoCalculaBonus> metodosDeCalculoBonus;
 
-    public ProcessadoraBonus() {
-        metodosDeCalculoBonus = new ArrayList<>();
+  public ProcessadoraBonus() {
+    metodosDeCalculoBonus = new ArrayList<>();
 
-        this.metodosDeCalculoBonus.add(new MetodoCalculaBonusFalta());
-        this.metodosDeCalculoBonus.add(new MetodoCalculaBonusDistancia());
-        this.metodosDeCalculoBonus.add(new MetodoCalculoBonusCargo());
+    this.metodosDeCalculoBonus.add(new MetodoCalculaBonusFalta());
+    this.metodosDeCalculoBonus.add(new MetodoCalculaBonusDistancia());
+    this.metodosDeCalculoBonus.add(new MetodoCalculoBonusCargo());
+  }
+
+  public void processar(Funcionario funcionario) {
+
+    for (IMetodoCalculaBonus metodoDeCalculoBonus : metodosDeCalculoBonus) {
+      metodoDeCalculoBonus.calcular(funcionario);
     }
 
-    public void processar(Funcionario funcionario) {
-
-        for (IMetodoCalculaBonus metodoDeCalculoBonus : metodosDeCalculoBonus) {
-            metodoDeCalculoBonus.calcular(funcionario);
-        }
-
-    }
+  }
 }

@@ -12,7 +12,6 @@ import org.junit.rules.ExpectedException;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
-
 //Link planilha: https://docs.google.com/spreadsheets/d/1sRZBMUMHlfPb1jFaEY9xkanywA52UwUHMj-hYTqPBG0/edit?usp=sharing
 
 public class FuncionarioBonusTest {
@@ -279,5 +278,105 @@ public class FuncionarioBonusTest {
 
     // Assert
     new Funcionario("Fulano", -1.00, "Gerente");
+  }
+
+  // NOVOS CASOS
+
+  @Test
+  public void CT020() throws Exception {
+    // Arrange
+    Funcionario funcionario = new Funcionario("Fulano", 998.00, "Gerente");
+    thrown.expect(Exception.class);
+    thrown.expectMessage(is("\n#1 Informe um nome válido"));
+
+    // Assert
+    funcionario.setNome(null);
+  }
+
+  @Test
+  public void CT021() throws Exception {
+    // Arrange
+    Funcionario funcionario = new Funcionario("Fulano", 998.00, "Gerente");
+    thrown.expect(Exception.class);
+    thrown.expectMessage(is("\n#1 Informe um nome válido"));
+
+    // Assert
+    funcionario.setNome("       ");
+  }
+
+  @Test
+  public void CT022() throws Exception {
+    // Arrange
+    Funcionario funcionario = new Funcionario("Fulano", 998.00, "Gerente");
+    thrown.expect(Exception.class);
+    thrown.expectMessage(is("\n#2 Informe um cargo válido"));
+
+    // Assert
+    funcionario.setCargo(null);
+  }
+
+  @Test
+  public void CT023() throws Exception {
+    // Arrange
+    Funcionario funcionario = new Funcionario("Fulano", 998.00, "Gerente");
+    thrown.expect(Exception.class);
+    thrown.expectMessage(is("\n#2 Informe um cargo válido"));
+
+    // Assert
+    funcionario.setCargo("       ");
+  }
+
+  @Test
+  public void CT024() throws Exception {
+    // Arrange
+    Funcionario funcionario = new Funcionario("Fulano", 998.00, "Gerente");
+    thrown.expect(Exception.class);
+    thrown.expectMessage(is("\n#3 O salário base deve ser >= R$ 998,00"));
+
+    // Assert
+    funcionario.setSalarioBase(-50.0);
+  }
+
+  @Test
+  public void CT025() throws Exception {
+    // Arrange
+    Funcionario funcionario = new Funcionario("Fulano", 998.00, "Gerente", 30, 5);
+    double salarioEsperado = 1107.98;
+    ProcessadoraBonus pb = new ProcessadoraBonus();
+
+    // Act
+    pb.processar(funcionario);
+
+    // Assert
+    assertEquals(salarioEsperado, funcionario.getSalario(), 0.001);
+  }
+
+  @Test
+  public void CT026() throws Exception {
+    // Arrange
+    Funcionario funcionario = new Funcionario("Fulano", 998.00, "Gerente", 30, 5);
+    double salarioEsperado = 1107.98;
+    ProcessadoraBonus pb = new ProcessadoraBonus();
+
+    // Act
+    pb.processar(funcionario);
+    pb.processar(funcionario);
+
+    // Assert
+    assertEquals(salarioEsperado, funcionario.getSalario(), 0.001);
+  }
+
+  @Test
+  public void CT027() throws Exception {
+    // Arrange
+    Funcionario funcionario = new Funcionario("Fulano", 998.00, "Gerente Senior", 30, 5);
+    double salarioEsperado = 1107.98;
+    ProcessadoraBonus pb = new ProcessadoraBonus();
+
+    // Act
+    pb.processar(funcionario);
+
+    // Assert
+    assertEquals(salarioEsperado, funcionario.getSalario(), 0.001);
   }
 }
